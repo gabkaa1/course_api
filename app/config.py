@@ -2,7 +2,6 @@ from pydantic_settings import BaseSettings
 from pydantic import model_validator, ConfigDict
 
 
-
 class Settings(BaseSettings):
     DB_HOST: str
     DB_PORT: int
@@ -10,7 +9,10 @@ class Settings(BaseSettings):
     DB_PASS: str
     DB_NAME: str
 
-    model_config = ConfigDict(env_file=".env")
+    KEY_JWT: str
+    ALGORITHM_JWT: str
+
+    model_config = ConfigDict(env_file=".env", env_file_encoding="utf-8", extra='ignore')
     DATABASE_URL: str = ""
 
     @model_validator(mode='after')
