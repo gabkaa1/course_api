@@ -58,9 +58,9 @@ class SBooking(BaseModel):
     date_from: date
     date_to: date
 
-@app.post('/booking')
-def add_booking(booking: SBooking):
-    pass
+# @app.post('/booking')
+# def add_booking(booking: SBooking):
+#     pass
 
 # r = requests.get(
 #     'http://127.0.0.1:8000/hotels/123',

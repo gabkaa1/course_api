@@ -4,35 +4,68 @@ class BookingException(HTTPException):
     status_code=500
     detail=''
 
-    def __init__(self):
-        super().__init__(status_code=self.status_code, detail=self.detail)
+    def __init__(self, status_code: int = 500, detail: str = ''):
+        super().__init__(status_code=status_code, detail=detail)
+    # def __init__(self):
+    #     super().__init__(status_code=self.status_code, detail=self.detail)
 
 
 
 class UserAlreadyExistsExeption(BookingException):
-    status_code=status.HTTP_409_CONFLICT
-    detail='Пользователь уже существует'
+  def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+              detail='Пользователь уже существует'
+              )
+        
+  
 
 
 class IncorrectEmailOrPasswordException(BookingException):
-  status_code=status.HTTP_401_UNAUTHORIZED
-  detail = 'Неверная почта или пароль'
+  def __init__(self):
+        super().__init__(
+          status_code=status.HTTP_401_UNAUTHORIZED,
+          detail = 'Неверная почта или пароль'
+        )
+  
  
 
 class TokenExpireException(BookingException):
-  status_code=status.HTTP_401_UNAUTHORIZED
-  detail = 'Токен истек'
- 
+  def __init__(self):
+        super().__init__(
+          status_code=status.HTTP_401_UNAUTHORIZED,
+          detail = 'Токен истек'
+        )
+  
 
 class TokenAbsentException(BookingException):
-  status_code=status.HTTP_401_UNAUTHORIZED
+  def __init__(self):
+        super().__init__(
+           status_code=status.HTTP_401_UNAUTHORIZED,
   detail = 'Токен отсутствует'
+        )
+  
  
 
 class IncorrectTokenFormatException(BookingException):
-  status_code=status.HTTP_401_UNAUTHORIZED
-  detail = 'Неверный формат токена'
+  def __init__(self):
+        super().__init__(status_code=status.HTTP_401_UNAUTHORIZED,
+            detail = 'Неверный формат токена'
+            
+        )
+  
  
 
 class UserIsNotPresentException(BookingException):
-    status_code=status.HTTP_401_UNAUTHORIZED
+  def __init__(self):
+        super().__init__(
+           status_code=status.HTTP_401_UNAUTHORIZED,
+        )
+  
+
+class RoomCannotBeBooked(BookingException):
+  def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            detail='Не осталось свободных номеров'
+        )
